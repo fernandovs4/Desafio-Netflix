@@ -1,8 +1,13 @@
 import numpy as np
-import pandas as pd
+from scipy.linalg import diagsvd
 
-
-
+def calculaAuto(B) #função utilizada para calcular os autovetores e autovalores
+    autovalores, autovetores = np.linalg.eig(B.T@B) # captura os autovetores e autovalores de B transposto multiplicando B
+    autovalores = diagsvd(autovalores, np.shape(B), np.shape(B)) # formata os autovalores
+    U = autovetores
+    sigma = autovalores
+    V_transposto = U.T
+    return sigma, U, V_transposto
 
 
 def escolheAleatorio(A):
