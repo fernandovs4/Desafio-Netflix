@@ -14,16 +14,26 @@ def escolheAleatorio(A):
     # funcao que escolhe um numero aleatorio de um array
     linha = np.random.randint(0, len(A))
     coluna = np.random.randint(0, len(A[0]))
+    valor_minimo = min(min(linha) for linha in A)
+    valor_maximo = max(max(linha) for linha in A)
+    numero_ruido = np.random.randint(valor_minimo, valor_maximo + 1)
+
     numero = A[linha][coluna]
+    B = A.copy()
+    B[linha][coluna] = numero_ruido
 
 
-    return (linha, coluna, numero)
+    return B, numero, linha, coluna
 
 
 
 def svd(A):
     # funcao que realiza a descomposicao SVD
-    ruido = escolheAleatorio(A)
+    B, numero, linha, coluna = escolheAleatorio(A)
+
+    sigma, U, V_transposto = calculaAuto(B)
+    
+
 
    
     
