@@ -21,9 +21,12 @@ def escolheAleatorio(A):
 
 
 
-def svd(A):
-    # funcao que realiza a descomposicao SVD
-    ruido = escolheAleatorio(A)
+def remove_ruido(B, numero, linha, coluna):
+    maximo = len(B)
+    while abs(numero-B[linha][coluna] > 1):
+        B[maximo][maximo] = 0
+        maximo -= 1
+    return B
 
    
     
