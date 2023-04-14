@@ -46,13 +46,13 @@ def svd(A):
 
 def main():
     df = pd.read_csv('ratings_small.csv', sep=',')
+    # Criando um DataFrame pivotado com as notas
+    df = df.pivot(index='userId', columns='movieId', values='rating')
 
-    movieId = df['movieId'].unique()
-    rating = df['rating']
- 
-
+    # Preenchendo os valores faltantes com 2.5
+    df = df.fillna(2.5)
         # Criar a tabela pivô
-    pivot_table = pd.pivot_table(df, values='rating', index=['userId'], columns=['movieId'], aggfunc='mean')
+    pivot_table = pd.pivot_table(df, values='rating', index=['userId'], columns=['movieId'])
 
     # Preencher as células vazias com a média da linha
     pivot_table = pivot_table.apply(lambda row: row.fillna(2.5), axis=1)
@@ -64,3 +64,4 @@ def main():
     
 if __name__ == '__main__':
     main()
+
