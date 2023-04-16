@@ -1,44 +1,62 @@
 import numpy as np
 from scipy.linalg import diagsvd
 import pandas as pd
+import random
+
 def calculaAuto(B): #função utilizada para calcular os autovetores e autovalores
-    autovalores, autovetores = np.linalg.eig(B.T@B) # captura os autovetores e autovalores de B transposto multiplicando B
-    autovalores = diagsvd(autovalores, np.shape(B), np.shape(B)) # formata os autovalores
-    U = autovetores
-    sigma = autovalores
-    V_transposto = U.T
-    return sigma, U, V_transposto
+    U, S, Vt = np.linalg.svd(B)
+    sigma = np.zeros(B.shape)
+    sigma[:len(S), :len(S)] = np.diag(S)
+    return sigma, U, Vt
 
 
 def escolheAleatorio(A):
     # funcao que escolhe um numero aleatorio de um array
-    linha = np.random.randint(0, len(A))
-    coluna = np.random.randint(0, len(A[0]))
-    valor_minimo = min(min(linha) for linha in A)
-    valor_maximo = max(max(linha) for linha in A)
-    numero_ruido = np.random.randint(valor_minimo, valor_maximo + 1)
+    df = A
+
+        # Obtenha uma lista dos índices de linhas e colunas que não são NaN
+    indices_validos = np.argwhere(~np.isnan(df.values))
+
+    # Escolha um índice aleatório que não seja NaN
+    indice_aleatorio = np.random.choice(len(indices_validos))
+
+    # Obtenha a linha e a coluna correspondente ao índice selecionado aleatoriamente
+    linha, coluna = indices_validos[indice_aleatorio]
+
+    # Obtenha o elemento e a posição correspondente no dataframe
+    elemento = df.iloc[linha, coluna]
+
+    # # calcular a média de cada coluna
+    # col_mean = np.nanmean(df, axis=0)
+
+    # # substituir os NaNs pela média da coluna correspondente
+    # mask = np.isnan(df)
+    # df[mask] = np.take(col_mean, np.where(mask)[1])
+    df = df.fillna(2.5)
+
+    df = df.to_numpy()
+    B = df.copy()
+    B[linha,coluna] = random.randrange(1, 6)
    # funcao principal
-    numero = A[linha][coluna]
-    B = A.copy()
-    B[linha][coluna] = numero_ruido
-
-
+    numero = elemento
+   
     return B, numero, linha, coluna
 
 
 def svd(A):
-    # funcao que realiza a descomposicao SVD
     B, numero, linha, coluna = escolheAleatorio(A)
-
     sigma, U, V_transposto = calculaAuto(B)
-
-    maximo = len(B)
-    while abs(numero-B[linha][coluna] > 1):
-        B[maximo][maximo] = 0
-        B = U@sigma@V_transposto
+    maximo = 670
+    v = U@sigma@V_transposto
+    v = v[linha][coluna]
+    while abs(numero- v) > 0.2:
+        sigma[maximo][maximo] = 0
+        v = U@sigma@V_transposto
+        v = v[linha][coluna]
         maximo -= 1
+        
   
-    return B
+    return sigma
  
     
 
@@ -46,22 +64,18 @@ def svd(A):
 
 def main():
     df = pd.read_csv('ratings_small.csv', sep=',')
-    # Criando um DataFrame pivotado com as notas
-    df = df.pivot(index='userId', columns='movieId', values='rating')
+    df_ratings = df.pivot_table(index='userId', columns='movieId', values='rating')
 
-    # Preenchendo os valores faltantes com 2.5
-    df = df.fillna(2.5)
-        # Criar a tabela pivô
-    pivot_table = pd.pivot_table(df, values='rating', index=['userId'], columns=['movieId'])
-
-    # Preencher as células vazias com a média da linha
-    pivot_table = pivot_table.apply(lambda row: row.fillna(2.5), axis=1)
-
-    # Exibir a tabela pivô resultante
-    print(pivot_table)
+    # Substitui os valores NaN pela média de cada coluna
+    df = df_ratings.fillna(df_ratings.mean())
+    print(df)
+   
+    sigma = svd(df)
+    #transformar pra csv
+    df = pd.DataFrame(sigma)
+    df.to_csv('sigma2.csv', index=False, header=False)
     
-    
-    
-if __name__ == '__main__':
-    main()
+   
 
+if __name__ == "__main__":
+     main()
