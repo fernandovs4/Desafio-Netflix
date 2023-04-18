@@ -7,6 +7,8 @@ def calculaAuto(B): #função utilizada para calcular os autovetores e autovalor
     U, S, Vt = np.linalg.svd(B)
     sigma = np.zeros(B.shape)
     sigma[:len(S), :len(S)] = np.diag(S)
+    for i in range(671,190):
+        sigma[i][i] = 0
     return sigma, U, Vt
 
 
@@ -46,14 +48,15 @@ def escolheAleatorio(A):
 def svd(A):
     B, numero, linha, coluna = escolheAleatorio(A)
     sigma, U, V_transposto = calculaAuto(B)
-    maximo = 670
     v = U@sigma@V_transposto
     v = v[linha][coluna]
-    while abs(numero- v) > 0.2:
-        sigma[maximo][maximo] = 0
-        v = U@sigma@V_transposto
-        v = v[linha][coluna]
-        maximo -= 1
+    # maximo = 670
+    # while abs(numero- v) > 0.2:
+    #     sigma[maximo][maximo] = 0
+    #     v = U@sigma@V_transposto
+    #     v = v[linha][coluna]
+    #     maximo -= 1
+    # k = 480
         
   
     return sigma
