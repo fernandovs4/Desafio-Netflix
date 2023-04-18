@@ -73,6 +73,7 @@ def svd(A):
         v = U@sigma@V_transposto
         v = v[linha][coluna]
         maximo -= 1
+        
   
     return sigma
  
