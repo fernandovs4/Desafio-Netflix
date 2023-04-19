@@ -6,13 +6,12 @@ import random
 def calculaAuto(B): #função utilizada para calcular os autovetores e autovalores
     U, S, VT = np.linalg.svd(B)
     compressão = 190 # quantidade de autovalores e autovetores que serão utilizados
-    print(S)
     return np.diag(S[:compressão]),  U[:, :compressão],VT[:compressão, :] # retorna os autovalores, autovetores e a matriz transposta dos autovetores
 
 def escolheAleatorio(A):
     # funcao que escolhe um numero aleatorio de um array
     df = A
-        # Obtenha uma lista dos índices de linhas e colunas que não são NaN
+    # Obtenha uma lista dos índices de linhas e colunas que não são NaN
     indices_validos = np.argwhere(~np.isnan(df.values))
     # Escolha um índice aleatório que não seja NaN
     indice_aleatorio = np.random.choice(len(indices_validos))
@@ -21,7 +20,6 @@ def escolheAleatorio(A):
     # Obtenha o elemento e a posição correspondente no dataframe
     elemento = df.iloc[linha, coluna]
     # # calcular a média de cada coluna
-
     df = df.fillna(df.mean())
     df = df.to_numpy()
     B = df.copy()
