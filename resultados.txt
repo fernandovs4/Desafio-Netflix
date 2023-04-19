@@ -1,0 +1,20 @@
+Esperado: 4.0
+Palpite: 0.9920258732071912
+Diferença: 3.007974126792809
+Quantidade: 1
+
+Esperado: 4.0
+Palpite: 1.3644483460100967
+Diferença: 2.6355516539899035
+Quantidade: 1
+
+Esperado: 4.0
+Palpite: 3.821246439412372
+Diferença: 0.1787535605876278
+Quantidade: 2
+
+Esperado: 5.0
+Palpite: 2.996242657641266
+Diferença: 2.003757342358734
+Quantidade: 3
+
