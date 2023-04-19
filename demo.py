@@ -1,14 +1,15 @@
 import pandas as pd
 from DesafioNetflix import calculaAuto
-df = pd.read_csv('ratings_small.csv', sep=',')
-df_ratings = df.pivot_table(index='userId', columns='movieId', values='rating')
+
+df = pd.read_csv('ratings_small_formated.csv', sep=',')
 #Substitui os valores NaN pela média de cada coluna
-df = df_ratings.fillna(df_ratings.mean())
+df = df.fillna(2.5)
 df = df.to_numpy()
 B = df.copy()
-x = 100
-numero_esperado = B[x-1][x-1]
-B[x-1][x-1] = 1
+i = 238
+j = 2497
+numero_esperado = B[i][j]
+B[i][j] = 1
 sigma, U, V_transposto = calculaAuto(B)
 B = U@sigma@V_transposto
-print(f"Numero esperado: {numero_esperado}\nNumero achado: {B[x-1][x-1]}")
+print(f"Numero esperado: {numero_esperado}\nNumero achado: {B[i][j]}")
