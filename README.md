@@ -41,6 +41,10 @@ Para conferir o desempenho final do nosso programa realizamos dois testes:\
 <img src= "https://github.com/fernandovs4/Desafio-Netflix/blob/main/test_stress_10mil.png">\
 <img src= "https://github.com/fernandovs4/Desafio-Netflix/blob/main/test_stress_50mil.png">\
 
+Um fator que tivemos que lidar era, na hora de gerar a matriz A (matriz de usuários por filmes), havia filmes que não tinha notas de certos usuários. Com isso, tivemos que pensar em uma estratégia para colocar valores nesses locais vazios. Nossa estratégia foi colocar a nota 2.5, que é aproximadamente a nota média entre 0.5 e 5 (notas permitidas para a avaliação dos filmes). 
+O cálculo que lidamos foi usar a função SVD do numpy para poder calcular os componentes U, Σ, e V^T de B (uma matriz cópia de A) , explicados anteriormente. Depois disso, aplicamos o uma redução de dimensionalidade da matriz Σ de acordo com o K calculado, com o fito de reduzir o "ruído" que tinha. Com os novos componentes reduzidos, obtemos uma matriz semelhante através da aplicação da fórmula do SVD obtendo B que procura ser semelhante a A:
+`B = UΣV^T`
+
 
 ## Concluindo
 Tendo em vista os resultados obtidos, notamos que apesar do nosso sistema em alguns momentos prever notas que se afastam bastante do que era esperado, grande parte das vezes ele retorna um valor interessante e que se aproxima do original. Um fato perceptível é que o número aleatório colocado como "ruído" altera bastante a capacidade de conseguir "limpar" se o "ruído" tiver uma diferença muito grande da nota real dada. Entretanto, acreditamos que seja possível alguns  testes e ajustes em relação à matriz sigma e na variável K para melhorar o nosso algoritmo e suas previsões, mas no geral o nosso sistema prevê de forma razoável a nota que o usuário daria para determinado filme, sendo então possível utilizá-lo em produção como ferramenta auxiliar para recomendar filmes à um usuário.
