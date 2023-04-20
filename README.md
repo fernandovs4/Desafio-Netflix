@@ -33,8 +33,10 @@ Fizemos dois testes com o nosso algoritmo:\
 <img src= "https://github.com/fernandovs4/Desafio-Netflix/blob/main/histograma_diferencas.jpg">\
 
 \
-2 - Ademais, realizamos um teste de stress que consistia em aumentar cada vez mais a quantidade de ruídos na nossa matriz original para ver como seria o desempenho do nosso algoritmo em relação aos seus palpites. Realizamos esses testes para 1000, 10000, 10000 mil ruídos. Com isso percebemos que, assim como o esperado, quanto maior a quantidade de dados "estragados" pior seria a previsão.
-As imagens abaixo mostra os resultados obtidos:
+2 - Ademais, realizamos um teste de stress que consistia em aumentar cada vez mais a quantidade de ruídos na nossa matriz original para ver como seria o desempenho do nosso algoritmo em relação aos seus palpites. Realizamos esses testes para mil, 10 mil e 50 mil ruídos. Com isso percebemos que, assim como o esperado, quanto maior a quantidade de dados "estragados" pior seria a previsão, isso é perceptível nos histogramas abaixo, haja vista que quanto maior a quantidade de ruídos os dados se deslocam mais para a direita.
+<img src= "https://github.com/fernandovs4/Desafio-Netflix/blob/main/test_stress_mil.jpg">\
+<img src= "https://github.com/fernandovs4/Desafio-Netflix/blob/main/test_stress_10mil.jpg">\
+<img src= "https://github.com/fernandovs4/Desafio-Netflix/blob/main/test_stress_50mil.jpg">\
 
 
 ## Concluindo
