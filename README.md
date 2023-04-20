@@ -28,7 +28,7 @@ Para que o nosso algoritmo funcione da maneira que gostaríamos nós precisávam
 **2 -** Além disso, nós utilizamos alguns valores da matriz, aplicamos o ruído e tentamos recalcular partindo do K=100, e vimos que para grande parte dos elementos selecionados o palpite era próximo do número esperado, por isso, prosseguimos com o K=100.
 
 ## Resultados
-Fizemos dois testes com o nosso algoritmo:\
+Para conferir o desempenho final do nosso programa realizamos dois testes:\
 **1 -** O primeiro visava testá-lo para diferentes elementos da matriz original e observar se o valor calculado foi próximo ao esperado (valor original antes do ruído). Com esse teste foi possível analisar que o nosso modelo funcionava para uma parte razoável dos elementos, por isso prosseguimos com o K=100.\
 <img src= "https://github.com/fernandovs4/Desafio-Netflix/blob/main/histograma_diferencas.jpg">\
 
