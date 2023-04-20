@@ -30,6 +30,8 @@ Para que o nosso algoritmo funcione da maneira que gostaríamos nós precisávam
 <img src= "https://github.com/fernandovs4/Desafio-Netflix/blob/main/graf_sigma.png">\
 **2 -** Além disso, nós utilizamos alguns valores da matriz, aplicamos o ruído e tentamos recalcular partindo do K=100, e vimos que para grande parte dos elementos selecionados o palpite era próximo do número esperado, por isso, prosseguimos com o K=100.
 
+Um fator que tivemos que lidar era, na hora de gerar a matriz A (matriz de usuários por filmes), havia filmes que não tinha notas de certos usuários. Com isso, tivemos que pensar em uma estratégia para colocar valores nesses locais vazios. Nossa estratégia foi colocar a nota 2.5, que é aproximadamente a nota média entre 0.5 e 5 (notas permitidas para a avaliação dos filmes). O cálculo que lidamos foi usar a função SVD do numpy para poder calcular os componentes U, Σ, e V^T de B (uma matriz cópia de A) , explicados anteriormente. Depois disso, aplicamos o uma redução de dimensionalidade da matriz Σ de acordo com o K calculado, com o fito de reduzir o "ruído" que tinha. Com os novos componentes reduzidos, obtemos uma matriz semelhante através da aplicação da fórmula do SVD obtendo B que procura ser semelhante a A: B = UΣV^T
+
 ## Resultados
 Para conferir o desempenho final do nosso programa realizamos dois testes:\
 **1 -** O primeiro visava testá-lo para diferentes elementos da matriz original e observar se o valor calculado foi próximo ao esperado (valor original antes do ruído). Com esse teste foi possível analisar que o nosso modelo funcionava para uma parte razoável dos elementos, por isso prosseguimos com o K=100.\
@@ -41,9 +43,7 @@ Para conferir o desempenho final do nosso programa realizamos dois testes:\
 <img src= "https://github.com/fernandovs4/Desafio-Netflix/blob/main/test_stress_10mil.png">\
 <img src= "https://github.com/fernandovs4/Desafio-Netflix/blob/main/test_stress_50mil.png">\
 
-Um fator que tivemos que lidar era, na hora de gerar a matriz A (matriz de usuários por filmes), havia filmes que não tinha notas de certos usuários. Com isso, tivemos que pensar em uma estratégia para colocar valores nesses locais vazios. Nossa estratégia foi colocar a nota 2.5, que é aproximadamente a nota média entre 0.5 e 5 (notas permitidas para a avaliação dos filmes). 
-O cálculo que lidamos foi usar a função SVD do numpy para poder calcular os componentes U, Σ, e V^T de B (uma matriz cópia de A) , explicados anteriormente. Depois disso, aplicamos o uma redução de dimensionalidade da matriz Σ de acordo com o K calculado, com o fito de reduzir o "ruído" que tinha. Com os novos componentes reduzidos, obtemos uma matriz semelhante através da aplicação da fórmula do SVD obtendo B que procura ser semelhante a A:
-`B = UΣV^T`
+
 
 
 ## Concluindo
