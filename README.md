@@ -4,13 +4,13 @@
 Para utilizar o programa basta clonar esse repositório em algum local de sua máquina. Para fazer isso, clique no botão verde **"Code"** logo acima, escolha um modo de baixar o repositório, podendo ser baixando o zip e descompactando ou clonando através de https ou ssh. Após seguir essas etapas, será preciso instalar as bibliotecas necessárias. Isso pode ser feito, estando na raiz do projeto, rodando no terminal o seguinte comando:  `pip install -r requirements.txt `, com isso, as bibliotecas necessárias serão instaladas. Com o ambiente preparado, o usuário estará apto a executar o arquivo demo.py e livre para alterar os valores das variáveis i e j para escolher especificamente o elemento em que deseja aplicar o ruído.
  
 ## Teoria/Modelo matemático
-A principal técnica utilizada no algoritmo que construímos é o SVD ("Singular Value Decomposition") que é uma técnica utilizada para decompor uma matriz em três componentes, sendo eles... A matriz Sigma obtida é uma matriz que possui uma diagonal contendo os autovalores em relação à nossa matriz original e de forma decrescente, sendo os maiores valores aqueles mais relevantes para a construção da nossa matriz inicial.\
-A fórmula matemática da SVD pode ser expressa como:\
-A = UΣV^T\
-A = Matriz original\
-U = Autovetores coluna.\
-Σ = Sigma\
-V^T = Autovetores linha\
+A técnica SVD, ou Decomposição em Valores Singulares, é uma técnica matemática amplamente utilizada para decompor uma matriz em três componentes principais, a saber: matriz U, matriz Sigma e matriz V^T (a transposta da matriz V). Essa técnica é usada para analisar e compreender as propriedades dos dados, descobrir padrões ocultos e reduzir a dimensionalidade dos dados.
+
+A matriz Sigma obtida na decomposição SVD é uma matriz diagonal contendo os autovalores em relação à matriz original, e esses autovalores são ordenados em ordem decrescente. Os autovalores são medidas da variabilidade dos dados em cada direção da matriz original, e os maiores valores de autovalor correspondem às direções mais importantes para a construção da matriz original.
+
+As colunas da matriz U correspondem aos autovetores à esquerda, enquanto as linhas da matriz V^T correspondem aos autovetores à direita. Esses autovetores representam as direções principais dos dados e são usados para encontrar a estrutura oculta nos dados.
+
+A decomposição SVD pode ser escrita na forma matricial A = UΣV^T, onde A é a matriz original. A técnica SVD é amplamente utilizada em várias áreas, como processamento de imagem, reconhecimento de fala, sistemas de recomendação, entre outras, por permitir reduzir a dimensionalidade dos dados, descobrir padrões e realizar outras operações úteis.
 
 \
 Para construir o algoritmo nós partimos da tese de que um usuário pode ser representado partindo do padrão geral dos demais usuários que temos acesso aos dados, ou seja, cada usuário possui um pouco de cada perfil e juntando cada uma dessas partes nós chegamos em um que melhor o representa. Sendo assim, nós temos que comprimir a nossa matriz Sigma de tal forma que ela possua apenas aqueles valores mais essenciais para a construção dos perfis em geral, ou seja mantemos os maiores valores e excluímos os menores, haja vista que esses menores seriam os mais afetados pelo ruído aplicado, afetando nossas previsões.
