@@ -23,17 +23,17 @@ Para construir o algoritmo nós partimos da tese de que um usuário pode ser rep
 ## Por dentro do código
 Para que o nosso algoritmo funcione da maneira que gostaríamos nós precisávamos primeiro definir o tamanho da compressão que faríamos, ou seja, quais autovalores manteríamos na nossa análise a fim de considerar apenas aqueles mais influentes na construção dos perfis em geral. Calculamos, então, o K, variável essa responsável por definir até qual autovalor nós mantériamos (Ex: para um K=10, nós manteríamos apenas os 10 maiores autovalores da matriz Sigma), ele foi calculado unindo dois métodos:\
 \
-1 - Criamos um gráfico contendo os valores da matriz sigma e vimos a partir de qual momento os valores passam a ser tornar pequenos, fazendo com que quando aplicado o ruído os autovalores seriam fortemente impactados e consequentemente o novo valor calculado para a posição do ruído também seria. Seguindo esse método, concordamos que com o K=100 era um valor interessante para capturar os autovalores por conta da forma que eles estavam se comportando a partir disso (cada vez reduzindo menor em relação ao anterior)\
+**1 -** Criamos um gráfico contendo os valores da matriz sigma e vimos a partir de qual momento os valores passam a ser tornar pequenos, fazendo com que quando aplicado o ruído os autovalores seriam fortemente impactados e consequentemente o novo valor calculado para a posição do ruído também seria. Seguindo esse método, concordamos que com o K=100 era um valor interessante para capturar os autovalores por conta da forma que eles estavam se comportando a partir disso (cada vez reduzindo menor em relação ao anterior)\
 <img src= "https://github.com/fernandovs4/Desafio-Netflix/blob/main/graf_sigma.png">\
-2 - Além disso, nós utilizamos alguns valores da matriz, aplicamos o ruído e tentamos recalcular partindo do K=100, e vimos que para grande parte dos elementos selecionados o palpite era próximo do número esperado, por isso, prosseguimos com o K=100.
+**2 -** Além disso, nós utilizamos alguns valores da matriz, aplicamos o ruído e tentamos recalcular partindo do K=100, e vimos que para grande parte dos elementos selecionados o palpite era próximo do número esperado, por isso, prosseguimos com o K=100.
 
 ## Resultados
 Fizemos dois testes com o nosso algoritmo:\
-1 - O primeiro visava testá-lo para diferentes elementos da matriz original e observar se o valor calculado foi próximo ao esperado (valor original antes do ruído). Com esse teste foi possível analisar que o nosso modelo funcionava para uma parte razoável dos elementos, por isso prosseguimos com o K=100.\
+**1 -** O primeiro visava testá-lo para diferentes elementos da matriz original e observar se o valor calculado foi próximo ao esperado (valor original antes do ruído). Com esse teste foi possível analisar que o nosso modelo funcionava para uma parte razoável dos elementos, por isso prosseguimos com o K=100.\
 <img src= "https://github.com/fernandovs4/Desafio-Netflix/blob/main/histograma_diferencas.jpg">\
 
 \
-2 - Ademais, realizamos um teste de stress que consistia em aumentar cada vez mais a quantidade de ruídos na nossa matriz original para ver como seria o desempenho do nosso algoritmo em relação aos seus palpites. Realizamos esses testes para mil, 10 mil e 50 mil ruídos. Com isso percebemos que, assim como o esperado, quanto maior a quantidade de dados "estragados" pior seria a previsão, isso é perceptível nos histogramas abaixo, haja vista que quanto maior a quantidade de ruídos os dados se deslocam mais para a direita.
+**2 -** Ademais, realizamos um teste de stress que consistia em aumentar cada vez mais a quantidade de ruídos na nossa matriz original para ver como seria o desempenho do nosso algoritmo em relação aos seus palpites. Realizamos esses testes para mil, 10 mil e 50 mil ruídos. Com isso percebemos que, assim como o esperado, quanto maior a quantidade de dados "estragados" pior seria a previsão, isso é perceptível nos histogramas abaixo, haja vista que quanto maior a quantidade de ruídos os dados se deslocam mais para a direita.
 <img src= "https://github.com/fernandovs4/Desafio-Netflix/blob/main/test_stress_mil.png">\
 <img src= "https://github.com/fernandovs4/Desafio-Netflix/blob/main/test_stress_10mil.png">\
 <img src= "https://github.com/fernandovs4/Desafio-Netflix/blob/main/test_stress_50mil.png">\
