@@ -42,7 +42,7 @@ def escolheAleatorio(A):
     #     v = U@sigma@V_transposto
     #     v = v[linha][coluna]
     #     maximo -= 1
-    # k = 480
+    # k = 570
     # return k
 
 
