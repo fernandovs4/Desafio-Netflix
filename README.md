@@ -10,7 +10,12 @@ A matriz Sigma obtida na decomposição SVD é uma matriz diagonal contendo os a
 
 As colunas da matriz U correspondem aos autovetores à esquerda, enquanto as linhas da matriz V^T correspondem aos autovetores à direita. Esses autovetores representam as direções principais dos dados e são usados para encontrar a estrutura oculta nos dados.
 
-A decomposição SVD pode ser escrita na forma matricial A = UΣV^T, onde A é a matriz original. A técnica SVD é amplamente utilizada em várias áreas, como processamento de imagem, reconhecimento de fala, sistemas de recomendação, entre outras, por permitir reduzir a dimensionalidade dos dados, descobrir padrões e realizar outras operações úteis.
+A decomposição SVD pode ser escrita na forma matricial A = UΣV^T.\
+A = matriz original\
+U = autovetores à esquerda\
+Σ = sigma\
+V^T = autovetores à direita
+
 
 \
 Para construir o algoritmo nós partimos da tese de que um usuário pode ser representado partindo do padrão geral dos demais usuários que temos acesso aos dados, ou seja, cada usuário possui um pouco de cada perfil e juntando cada uma dessas partes nós chegamos em um que melhor o representa. Sendo assim, nós temos que comprimir a nossa matriz Sigma de tal forma que ela possua apenas aqueles valores mais essenciais para a construção dos perfis em geral, ou seja mantemos os maiores valores e excluímos os menores, haja vista que esses menores seriam os mais afetados pelo ruído aplicado, afetando nossas previsões.
@@ -28,4 +33,4 @@ Fizemos dois testes com o nosso algoritmo:\
 <img src= "https://github.com/fernandovs4/Desafio-Netflix/blob/main/histograma_diferencas.jpg">\
 
 \
-2 - Ademais, realizamos um teste de stress que consistia em aumentar cada vez mais a quantidade de ruídos na nossa matriz original para ver como seria o desempenho do nosso algoritmo em relação aos seus palpites. Realizamos esses testes para 100 mil, 200 mil, 300 mil, 400 mil, 500 mil, 600 mil, 700 mil, 800 mil, 900 mil e 1 milhão de ruídos. Com isso percebemos que, assim como o esperado, quanto maior a quantidade de dados "estragados" pior seria a previsão.
+2 - Ademais, realizamos um teste de stress que consistia em aumentar cada vez mais a quantidade de ruídos na nossa matriz original para ver como seria o desempenho do nosso algoritmo em relação aos seus palpites. Realizamos esses testes para 100, 500, 1000 e 10 mil ruídos. Com isso percebemos que, assim como o esperado, quanto maior a quantidade de dados "estragados" pior seria a previsão.
