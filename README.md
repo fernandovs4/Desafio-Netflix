@@ -33,7 +33,11 @@ Fizemos dois testes com o nosso algoritmo:\
 <img src= "https://github.com/fernandovs4/Desafio-Netflix/blob/main/histograma_diferencas.jpg">\
 
 \
-2 - Ademais, realizamos um teste de stress que consistia em aumentar cada vez mais a quantidade de ruídos na nossa matriz original para ver como seria o desempenho do nosso algoritmo em relação aos seus palpites. Realizamos esses testes para 100, 500, 1000 e 10 mil ruídos. Com isso percebemos que, assim como o esperado, quanto maior a quantidade de dados "estragados" pior seria a previsão.
+2 - Ademais, realizamos um teste de stress que consistia em aumentar cada vez mais a quantidade de ruídos na nossa matriz original para ver como seria o desempenho do nosso algoritmo em relação aos seus palpites. Realizamos esses testes para mil, 10 mil e 50 mil ruídos. Com isso percebemos que, assim como o esperado, quanto maior a quantidade de dados "estragados" pior seria a previsão, isso é perceptível nos histogramas abaixo, haja vista que quanto maior a quantidade de ruídos os dados se deslocam mais para a direita.
+<img src= "https://github.com/fernandovs4/Desafio-Netflix/blob/main/test_stress_mil.jpg">\
+<img src= "https://github.com/fernandovs4/Desafio-Netflix/blob/main/test_stress_10mil.jpg">\
+<img src= "https://github.com/fernandovs4/Desafio-Netflix/blob/main/test_stress_50mil.jpg">\
+
 
 ## Concluindo
-Tendo em vista os resultados obtidos, notamos que apesar do nosso sistema em alguns momentos prever notas que se afastam bastante do que era esperado, grande parte das vezes ele retorna um valor interessante e que se aproxima do original. Dessa forma, acreditamos que seja possível alguns  testes e ajustes em relação à matriz sigma e na variável K para melhorar o nosso algoritmo e suas previsões, mas no geral o nosso sistema prevê de forma razoável a nota que o usuário daria para determinado filme, sendo então possível utilizá-lo como ferramenta auxiliar para recomendar filmes à um usuário.
+Tendo em vista os resultados obtidos, notamos que apesar do nosso sistema em alguns momentos prever notas que se afastam bastante do que era esperado, grande parte das vezes ele retorna um valor interessante e que se aproxima do original. Um fato perceptível é que o número aleatório colocado como "ruído" altera bastante a capacidade de conseguir "limpar" se o "ruído" tiver uma diferença muito grande da nota real dada. Entretanto, acreditamos que seja possível alguns  testes e ajustes em relação à matriz sigma e na variável K para melhorar o nosso algoritmo e suas previsões, mas no geral o nosso sistema prevê de forma razoável a nota que o usuário daria para determinado filme, sendo então possível utilizá-lo como ferramenta auxiliar para recomendar filmes à um usuário.
